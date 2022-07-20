@@ -5,12 +5,19 @@ import CartItem from './CartItem';
 import classes from './Cart.module.css';
 import CartContext from '../../store/cart-context';
 import Checkout from './Checkout';
+import useHttp from '../../hooks/use-http';
 
 const Cart = (props) => {
   const [isCheckout, setIsCheckout] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [didSubmit, setDidSubmit] = useState(false);
   const cartCtx = useContext(CartContext);
+
+  const {
+    isLoading: orderIsLoading,
+    sendRequest: orderGroceriesRequest,
+    response: orderResponse,
+    resetResponse: resetOrderResponse,
+  } = useHttp();
 
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
   const hasItems = cartCtx.items.length > 0;
@@ -27,18 +34,17 @@ const Cart = (props) => {
     setIsCheckout(true);
   };
 
+  //Request to backend for fetching groceries
   const submitOrderHandler = async (userData) => {
-    setIsSubmitting(true);
-    await fetch('https://react-http-6b4a6.firebaseio.com/orders.json', {
-      method: 'POST',
-      body: JSON.stringify({
-        user: userData,
-        orderedItems: cartCtx.items,
-      }),
+    orderGroceriesRequest({
+      url: "http://localhost:8080/api/protected/orderGroceries",
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: { userDetails: userData, orderedItems: cartCtx.items },
+      errorMsg: "Request failed!",
     });
-    setIsSubmitting(false);
-    setDidSubmit(true);
-    cartCtx.clearCart();
   };
 
   const cartItems = (
@@ -83,11 +89,11 @@ const Cart = (props) => {
     </React.Fragment>
   );
 
-  const isSubmittingModalContent = <p>Sending order data...</p>;
+  const isSubmittingModalContent = <p>Confirming your order...</p>;
 
   const didSubmitModalContent = (
     <React.Fragment>
-      <p>Successfully sent the order!</p>
+      <p>Your order has been placed successfully!</p>
       <div className={classes.actions}>
       <button className={classes.button} onClick={props.onClose}>
         Close
@@ -96,11 +102,17 @@ const Cart = (props) => {
     </React.Fragment>
   );
 
+  if(orderResponse.responseCode === 0){
+    setDidSubmit(true);
+    cartCtx.clearCart();
+    resetOrderResponse();
+  }
+
   return (
     <Modal onClose={props.onClose}>
-      {!isSubmitting && !didSubmit && cartModalContent}
-      {isSubmitting && isSubmittingModalContent}
-      {!isSubmitting && didSubmit && didSubmitModalContent}
+      {!orderIsLoading && !didSubmit && cartModalContent}
+      {orderIsLoading && isSubmittingModalContent}
+      {!orderIsLoading && didSubmit && didSubmitModalContent}
     </Modal>
   );
 };

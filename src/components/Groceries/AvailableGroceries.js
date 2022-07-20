@@ -48,7 +48,7 @@ const AvailableMeals = () => {
   if (mealsResponse === "") {
     return (
       <section className={classes.MealsLoading}>
-        <p>No groceries available at this moment! Kindly check back later.</p>
+        <p>No groceries are available at this moment! Kindly check back later.</p>
       </section>
     );
   }
