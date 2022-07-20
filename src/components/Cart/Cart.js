@@ -37,7 +37,7 @@ const Cart = (props) => {
   //Request to backend for fetching groceries
   const submitOrderHandler = async (userData) => {
     orderGroceriesRequest({
-      url: "http://localhost:8080/api/protected/orderGroceries",
+      url: "https://groceries-ordering-app-java.herokuapp.com/api/protected/orderGroceries",
       method: "post",
       headers: {
         "Content-Type": "application/json",
