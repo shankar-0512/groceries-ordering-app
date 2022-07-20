@@ -16,7 +16,7 @@ const AvailableMeals = () => {
   //Request to backend for fetching groceries
   const FetchGroceries = async (requestJson) => {
     sendGroceriesRequest({
-      url: "https://groceries-ordering-app-java.herokuapp.com/api/protected/fetchGroceries",
+      url: "http://localhost:8080/api/protected/fetchGroceries",
       method: "post",
       headers: {
         "Content-Type": "application/json",
