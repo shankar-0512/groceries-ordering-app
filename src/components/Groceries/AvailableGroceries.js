@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import LoadingSpinner from "../UI/LoadingSpinner";
 import classes from "./AvailableGroceries.module.css";
 import useHttp from "../../hooks/use-http";
 import GroceryList from "./GroceryList";
@@ -35,13 +35,11 @@ const AvailableMeals = () => {
     setCategory(userCategory);
   }
 
-  console.log(category);
-
   if (mealsIsLoading) {
     return (
-      <section className={classes.MealsLoading}>
-        <p>Loading...</p>
-      </section>
+      <div className="centered">
+        <LoadingSpinner />
+      </div>
     );
   }
 

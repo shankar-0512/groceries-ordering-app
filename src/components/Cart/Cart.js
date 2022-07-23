@@ -103,9 +103,9 @@ const Cart = (props) => {
   );
 
   if(orderResponse.responseCode === 0){
+    resetOrderResponse();
     setDidSubmit(true);
     cartCtx.clearCart();
-    resetOrderResponse();
   }
 
   return (

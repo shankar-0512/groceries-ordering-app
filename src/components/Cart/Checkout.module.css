@@ -30,28 +30,34 @@
   
   .actions button {
     font: inherit;
-    color: #5a1a01;
     cursor: pointer;
-    background-color: transparent;
-    border: none;
-    border-radius: 25px;
-    padding: 0.5rem 2rem; 
+    font-size: 0.9rem;
+    background-image: linear-gradient(
+      to right,
+      #02aab0 0%,
+      #00cdac 51%,
+      #02aab0 100%
+    );
+    border: 1px solid white;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    padding: 0.5rem 1.5rem;
+    border-radius: 30px;
+    box-shadow: 0 0 20px #eee;
   }
   
   .actions button:hover,
   .actions button:active {
-    background-color: #ffe6dc;
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
   }
   
-  .actions .submit {
-    border: 1px solid #5a1a01;
-    background-color: #5a1a01;
-    color: white;
-  }
-  
-  .actions .submit:hover,
-  .actions .submit:active {
-    background-color: #7a2706;
+  .button:focus {
+    outline: none;
   }
   
   .invalid label {

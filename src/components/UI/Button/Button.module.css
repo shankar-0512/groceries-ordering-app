@@ -1,0 +1,46 @@
+.button {
+  font: inherit;
+  cursor: pointer;
+  font-size: 0.90rem;
+  background-image: linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%);
+  margin-left: 2%;
+  margin-top: 2%;
+  padding: 0.50rem 1.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+  box-shadow: 0 0 20px #eee;
+  border-radius: 30px;
+  border: 1px solid white;
+}
+
+.button:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+.button:focus {
+  outline: none;
+}
+
+button:disabled,
+button:focus:disabled,
+button:hover:disabled,
+button:active:disabled {
+  background: #ccc;
+  border: #ccc;
+  cursor: not-allowed;
+}
+
+@media (min-width: 853px) {
+
+  .button{
+    font-size: 1rem;
+    border-radius: 30px;
+    margin-right: 2%;
+    margin-top: 2%;
+  }
+}

@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import MealItem from "./GroceryItem/GroceryItem";
+import GroceryItem from "./GroceryItem/GroceryItem";
 import Card from "../UI/Card";
 import classes from "./AvailableGroceries.module.css";
 import styles from "../CommonInput/Input.module.css";
@@ -16,7 +16,7 @@ function MealList(props) {
   }
 
   const mealsList = props.meals.map((meal) => (
-    <MealItem
+    <GroceryItem
       key={meal.id}
       id={meal.id}
       name={meal.name}

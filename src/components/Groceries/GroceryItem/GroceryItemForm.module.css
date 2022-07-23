@@ -1,20 +1,29 @@
 .form {
-    text-align: right;
-  }
-  
-  .form button {
-    font: inherit;
-    cursor: pointer;
-    background-color: #8a2b06;
-    border: 1px solid #8a2b06;
-    color: white;
-    padding: 0.25rem 2rem;
-    border-radius: 20px;
-    font-weight: bold;
-  }
-  
-  .form button:hover,
-  .form button:active {
-    background-color: #641e03;
-    border-color: #641e03;
-  }
+  text-align: right;
+}
+
+.form button {
+  font: inherit;
+  cursor: pointer;
+  background-image: linear-gradient(
+    to right,
+    #02aab0 0%,
+    #00cdac 51%,
+    #02aab0 100%
+  );
+  border: 1px solid #ffffff;
+  color: white;
+  transition: 0.5s;
+  background-size: 200% auto;
+  padding: 0.25rem 2rem;
+  border-radius: 20px;
+  box-shadow: 0 0 20px #eee;
+  font-weight: bold;
+}
+
+.form button:hover,
+.form button:active {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}

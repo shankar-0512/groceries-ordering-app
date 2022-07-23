@@ -1,14 +1,17 @@
-import { Fragment } from "react";
+import GrocerySummary from "./GrocerySummary";
+import AvailableGroceries from "./AvailableGroceries";
+import Layout from "../Layout/Layout";
+import Cart from "../Cart/Cart";
 
-import MealsSummary from "./GrocerySummary";
-import AvailableMeals from "./AvailableGroceries";
-
-const Meals = () => {
+const Meals = (props) => {
   return (
-    <Fragment>
-      <MealsSummary />
-      <AvailableMeals />
-    </Fragment>
+    <Layout onShowCart={props.onShowCart}>
+      {props.cartIsShown && <Cart onClose={props.hideCartHandler} />}
+      <main>
+        <GrocerySummary />
+        <AvailableGroceries />
+      </main>
+    </Layout>
   );
 };
 
