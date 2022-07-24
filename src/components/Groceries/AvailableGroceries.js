@@ -4,11 +4,11 @@ import classes from "./AvailableGroceries.module.css";
 import useHttp from "../../hooks/use-http";
 import GroceryList from "./GroceryList";
 
-const AvailableMeals = () => {
+const AvailableGroceries = () => {
   const {
-    isLoading: mealsIsLoading,
+    isLoading: groceriesIsLoading,
     sendRequest: sendGroceriesRequest,
-    response: mealsResponse,
+    response: groceriesResponse,
   } = useHttp();
 
   const [category, setCategory] = useState("");
@@ -35,7 +35,7 @@ const AvailableMeals = () => {
     setCategory(userCategory);
   }
 
-  if (mealsIsLoading) {
+  if (groceriesIsLoading) {
     return (
       <div className="centered">
         <LoadingSpinner />
@@ -43,7 +43,7 @@ const AvailableMeals = () => {
     );
   }
 
-  if (mealsResponse === "") {
+  if (groceriesResponse === "") {
     return (
       <section className={classes.MealsLoading}>
         <p>No groceries are available at this moment! Kindly check back later.</p>
@@ -51,7 +51,7 @@ const AvailableMeals = () => {
     );
   }
 
-  return <GroceryList meals={mealsResponse} categoryUpdate={categoryUpdate} />;
+  return <GroceryList groceries={groceriesResponse} categoryUpdate={categoryUpdate} />;
 };
 
-export default AvailableMeals;
+export default AvailableGroceries;

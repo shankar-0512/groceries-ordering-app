@@ -13,15 +13,16 @@ function MealList(props) {
     if (category !== "") {
       props.categoryUpdate(category);
     }
+    categoriesRef.current.value = "";
   }
 
-  const mealsList = props.meals.map((meal) => (
+  const mealsList = props.groceries.map((grocery) => (
     <GroceryItem
-      key={meal.id}
-      id={meal.id}
-      name={meal.name}
-      description={meal.description}
-      price={meal.price}
+      key={grocery.id}
+      id={grocery.id}
+      name={grocery.name}
+      description={grocery.description}
+      price={grocery.price}
     />
   ));
 
@@ -34,7 +35,7 @@ function MealList(props) {
             ref={categoriesRef}
             className={classes.select}
             name="categoryList"
-            id="class"
+            id="category"
             onClick={categorySubmitHandler}
           >
             <option value="" style={{ color: "grey" }}>

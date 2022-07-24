@@ -14,23 +14,21 @@ const Header = (props) => {
     localStorage.clear();
   }
 
+  // <li>
+  //   <NavLink
+  //     to="/groceries/orderHistory"
+  //     className={(navData) => (navData.isActive ? classes.active : "")}
+  //   >
+  //     ORDER HISTORY
+  //   </NavLink>
+  // </li>;
+
   return (
     <Fragment>
       <header className={classes.header}>
         <h1 className={classes.h1}>KWIKMART</h1>
         <nav className={classes.nav}>
           <ul>
-            <li>
-              <NavLink
-                to="/groceries/orderHistory"
-                className={(navData) =>
-                  navData.isActive ? classes.active : ""
-                }
-              >
-                ORDER HISTORY
-              </NavLink>
-            </li>
-
             <HeaderCartButton onClick={props.onShowCart} />
 
             <li>

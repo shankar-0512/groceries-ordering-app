@@ -1,13 +1,16 @@
-import React, { useContext, useState } from 'react';
-
-import Modal from '../UI/Modal';
-import CartItem from './CartItem';
-import classes from './Cart.module.css';
-import CartContext from '../../store/cart-context';
-import Checkout from './Checkout';
-import useHttp from '../../hooks/use-http';
+import React, { useContext, useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import Modal from "../UI/Modal";
+import CartItem from "./CartItem";
+import classes from "./Cart.module.css";
+import CartContext from "../../store/cart-context";
+import Checkout from "./Checkout";
+import useHttp from "../../hooks/use-http";
 
 const Cart = (props) => {
+  const userName = useSelector((state) => state.login.userName);
+  const userAddress = useSelector((state) => state.login.userAddress);
+
   const [isCheckout, setIsCheckout] = useState(false);
   const [didSubmit, setDidSubmit] = useState(false);
   const cartCtx = useContext(CartContext);
@@ -48,7 +51,7 @@ const Cart = (props) => {
   };
 
   const cartItems = (
-    <ul className={classes['cart-items']}>
+    <ul className={classes["cart-items"]}>
       {cartCtx.items.map((item) => (
         <CartItem
           key={item.id}
@@ -64,7 +67,7 @@ const Cart = (props) => {
 
   const modalActions = (
     <div className={classes.actions}>
-      <button className={classes['button--alt']} onClick={props.onClose}>
+      <button className={classes["button--alt"]} onClick={props.onClose}>
         Close
       </button>
       {hasItems && (
@@ -83,7 +86,12 @@ const Cart = (props) => {
         <span>{totalAmount}</span>
       </div>
       {isCheckout && (
-        <Checkout onConfirm={submitOrderHandler} onCancel={props.onClose} />
+        <Checkout
+          onConfirm={submitOrderHandler}
+          onCancel={props.onClose}
+          userName={userName}
+          userAddress={userAddress}
+        />
       )}
       {!isCheckout && modalActions}
     </React.Fragment>
@@ -95,14 +103,14 @@ const Cart = (props) => {
     <React.Fragment>
       <p>Your order has been placed successfully!</p>
       <div className={classes.actions}>
-      <button className={classes.button} onClick={props.onClose}>
-        Close
-      </button>
-    </div>
+        <button className={classes.button} onClick={props.onClose}>
+          Close
+        </button>
+      </div>
     </React.Fragment>
   );
 
-  if(orderResponse.responseCode === 0){
+  if (orderResponse.responseCode === 0) {
     resetOrderResponse();
     setDidSubmit(true);
     cartCtx.clearCart();

@@ -5,14 +5,22 @@ const loginSlice = createSlice({
   initialState: {
     isAuthenticated: false,
     userId: null,
+    userName: null,
+    userAddress: null,
   },
   reducers: {
     LoginStateHandler(state) {
       state.isAuthenticated = !state.isAuthenticated;
     },
-    UpdateUserId(state, action){
+    UpdateUserId(state, action) {
       state.userId = action.payload;
-    }
+    },
+    UpdateUserName(state, action) {
+      state.userName = action.payload;
+    },
+    UpdateUserAddress(state, action) {
+      state.userAddress = action.payload;
+    },
   },
 });
 

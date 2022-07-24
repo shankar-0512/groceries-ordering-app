@@ -71,9 +71,13 @@ function App() {
   useEffect(() => {
     const loggedInUser = localStorage.getItem("isLoggedIn");
     const userId = localStorage.getItem("userId");
+    const userName = localStorage.getItem("userName");
+    const userAddress = localStorage.getItem("userAddress");
     if (loggedInUser) {
       dispatch(loginActions.LoginStateHandler());
       dispatch(loginActions.UpdateUserId(userId));
+      dispatch(loginActions.UpdateUserName(userName));
+      dispatch(loginActions.UpdateUserAddress(userAddress));
     }
   }, [dispatch]);
 

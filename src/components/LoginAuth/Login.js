@@ -231,7 +231,6 @@ function Login(props) {
     dispatchAddress({ type: "INPUT_BLUR" });
   }
 
-
   //************ACTION HANDLERS************//
 
   function submitHandler(event) {
@@ -289,8 +288,12 @@ function Login(props) {
   if (response.responseCode === 0) {
     dispatch(loginActions.LoginStateHandler());
     dispatch(loginActions.UpdateUserId(response.userId));
+    dispatch(loginActions.UpdateUserName(response.userName));
+    dispatch(loginActions.UpdateUserAddress(response.userAddress));
     localStorage.setItem("isLoggedIn", 1);
     localStorage.setItem("userId", response.userId);
+    localStorage.setItem("userName", response.userName);
+    localStorage.setItem("userAddress", response.userAddress);
     closeErrorModal();
   }
 
@@ -415,10 +418,7 @@ function Login(props) {
         )}
         {!props.signUpFlag && (
           <div className={classes.action}>
-            <Button
-              type="submit"
-              disabled={!formisvalid && true}
-            >
+            <Button type="submit" disabled={!formisvalid && true}>
               Sign in
             </Button>
             <Outlet />
@@ -426,10 +426,7 @@ function Login(props) {
         )}
         {props.signUpFlag && (
           <div className={classes.action}>
-            <Button
-              type="submit"
-              disabled={!formisvalid && true}
-            >
+            <Button type="submit" disabled={!formisvalid && true}>
               Sign up
             </Button>
             <Outlet />
