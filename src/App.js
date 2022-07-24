@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
 import { Route, Routes, useNavigate, Link } from "react-router-dom";
 import Groceries from "./components/Groceries/Groceries";
-import OrderHistory from "./components/OrderHistory/OrderHistory";
 import Login from "./components/LoginAuth/Login";
 import { useSelector, useDispatch } from "react-redux";
 import { loginActions } from "./store/login-slice";
 import classes from "./components/UI/Button/Button.module.css";
-import Button from "./components/UI/Button/Button";
 
 function App() {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -142,7 +140,6 @@ function App() {
           />
         }
       />
-      <Route path="/groceries/orderHistory" element={<OrderHistory />} />
     </Routes>
   );
 }
