@@ -9,11 +9,10 @@ function MealList(props) {
 
   function categorySubmitHandler() {
     const category = categoriesRef.current.value;
-
+    categoriesRef.current.value = "";
     if (category !== "") {
       props.categoryUpdate(category);
     }
-    categoriesRef.current.value = "";
   }
 
   const mealsList = props.groceries.map((grocery) => (
@@ -36,7 +35,7 @@ function MealList(props) {
             className={classes.select}
             name="categoryList"
             id="category"
-            onClick={categorySubmitHandler}
+            onChange={categorySubmitHandler}
           >
             <option value="" style={{ color: "grey" }}>
               Select
